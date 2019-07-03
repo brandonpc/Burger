@@ -10,23 +10,19 @@ var PORT = process.env.PORT || 8080;
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 // Serve static content for the app from the "public" directory in the application directory.
-app.use(express.static("public"));
+app.use(express.static(_dirname + "public"));
 // use middlewares
-app.use(express.urlencoded({
-  extended: true
+// app.use(express.urlencoded({
+//   extended: true
+// }));
+app.use(bodyParser.urlencoded({
+  endtended: false
 }));
 app.use(methodOverride('_method'));
 // Parse application body as JSON
 app.use(express.json());
 
-app.use(bodyParser.urlencoded({
-  endtended: false
-}));
-
-
-
-// Set Handlebars.
-
+// use handlebars.
 app.engine("handlebars", exphbs({
   defaultLayout: "main"
 }));
@@ -34,10 +30,10 @@ app.set("view engine", "handlebars");
 
 // Import routes and give the server access to them.
 
-app.use(routes);
+app.use('/', routes);
 
-// Start our server so that it can begin listening to client requests.
+// start listening
 app.listen(PORT, function () {
-  // Log (server-side) when our server has started
+  // log where listening (if listening) so i know it's working (and where to look)
   console.log("Server listening on: http://localhost:" + PORT);
 });
