@@ -10,7 +10,7 @@ var PORT = process.env.PORT || 8080;
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 // Serve static content for the app from the "public" directory in the application directory.
-app.use(express.static(_dirname + "public"));
+app.use(express.static(__dirname + '/public'));
 // use middlewares
 // app.use(express.urlencoded({
 //   extended: true
@@ -23,13 +23,12 @@ app.use(methodOverride('_method'));
 app.use(express.json());
 
 // use handlebars.
-app.engine("handlebars", exphbs({
+app.engine('handlebars', exphbs({
   defaultLayout: "main"
 }));
 app.set("view engine", "handlebars");
 
 // Import routes and give the server access to them.
-
 app.use('/', routes);
 
 // start listening

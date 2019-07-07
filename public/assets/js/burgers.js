@@ -1,60 +1,44 @@
-// Make sure we wait to attach our handlers until the DOM is fully loaded.
-$(function () {
-  $(".change-sleep").on("click", function (event) {
-    var id = $(this).data("id");
-    var newSleep = $(this).data("newsleep");
+// // Make sure we wait to attach our handlers until the DOM is fully loaded.
+// $(function () {
+//   $(".change-sleep").on("click", function (event) {
+//     var id = $(this).data("id");
+//     var newConsume = $(this).data("newsleep");
 
-    var newSleepState = {
-      sleepy: newSleep
-    };
+//     var newConsumeState = {
+//       consumed: newConsume
+//     };
 
-    // Send the PUT request.
-    $.ajax("/api/burgers/" + id, {
-      type: "PUT",
-      data: newSleepState
-    }).then(
-      function () {
-        console.log("changed sleep to", newSleep);
-        // Reload the page to get the updated list
-        loburgerion.reload();
-      }
-    );
-  });
+//     // Send the PUT request.
+//     $.ajax("/api/burgers/" + id, {
+//       type: "PUT",
+//       data: newConsumeState
+//     }).then(
+//       function () {
+//         console.log("changed consume to", newConsume);
+//         // Reload the page to get the updated list
+//         location.reload();
+//       }
+//     );
+//   });
 
-  $(".create-form").on("submit", function (event) {
-    // Make sure to preventDefault on a submit event.
-    event.preventDefault();
+//   $(".create-form").on("submit", function (event) {
+//     // Make sure to preventDefault on a submit event.
+//     event.preventDefault();
 
-    var newburger = {
-      name: $("#ca").val().trim(),
-      sleepy: $("[name=sleepy]:checked").val().trim()
-    };
+//     var newburger = {
+//       name: $("#ca").val().trim(),
+//       consume: $("[name=consumed]:checked").val().trim()
+//     };
 
-    // Send the POST request.
-    $.ajax("/api/burgers", {
-      type: "POST",
-      data: newburger
-    }).then(
-      function () {
-        console.log("created new burger");
-        // Reload the page to get the updated list
-        loburgerion.reload();
-      }
-    );
-  });
-
-  $(".delete-burger").on("click", function (event) {
-    var id = $(this).data("id");
-
-    // Send the DELETE request.
-    $.ajax("/api/burgers/" + id, {
-      type: "DELETE"
-    }).then(
-      function () {
-        console.log("deleted burger", id);
-        // Reload the page to get the updated list
-        loburgerion.reload();
-      }
-    );
-  });
-});
+//     // Send the POST request.
+//     $.ajax("/api/burgers", {
+//       type: "POST",
+//       data: newburger
+//     }).then(
+//       function () {
+//         console.log("created new burger");
+//         // Reload the page to get the updated list
+//         location.reload();
+//       }
+//     );
+//   });
